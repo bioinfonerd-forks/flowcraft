@@ -22,6 +22,8 @@ all the components.
 position in the `nextflow run` command inside the .nextflow.log file.
 - Fix parsing of .nextflow.log file when searching for `nextflow run` command.
 - Fixed bug between mash_sketch_fasta and mash_dist.
+- `momps` and `mlst` components now save results per sample to avoid overwriting
+results from previous runs
 
 ### Minor/Other changes
 

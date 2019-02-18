@@ -12,7 +12,7 @@ process mlst_{{ pid }} {
     set sample_id, file(assembly) from {{ input_channel }}
 
     output:
-    file '*.mlst.txt' into LOG_mlst_{{ pid }}
+    set sample_id, file('*.mlst.txt') into LOG_mlst_{{ pid }}
     set sample_id, file(assembly), file(".status") into MAIN_mlst_out_{{ pid }}
     {% with task_name="mlst" %}
     {%- include "compiler_channels.txt" ignore missing -%}
@@ -47,17 +47,17 @@ process mlst_{{ pid }} {
 
 process compile_mlst_{{ pid }} {
 
-    publishDir "results/annotation/mlst_{{ pid }}/"
+    publishDir "results/typing/mlst_{{ pid }}/"
 
     input:
-    file res from LOG_mlst_{{ pid }}.collect()
+    set sample_id, res from LOG_mlst_{{ pid }}
 
     output:
-    file "mlst_report.tsv"
+    file "*mlst_report.tsv"
 
     script:
     """
-    cat $res >> mlst_report.tsv
+    cat $res > ${sample_id}_mlst_report.tsv
     """
 }
 

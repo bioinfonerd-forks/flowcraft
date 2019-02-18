@@ -14,6 +14,7 @@ process momps_{{ pid }} {
     val clear from checkpointClear_{{ pid }}
 
     output:
+    val sample_id into momps_sample_id_{{ pid }}
     file("*_st.tsv") into momps_st_{{ pid }}
     file("*_profile.tsv") into momps_profile_{{ pid }}
     {% with task_name="momps" %}
@@ -75,8 +76,9 @@ process momps_report_{{ pid }} {
     publishDir "results/typing/momps_{{ pid }}/", pattern: "*.tsv"
 
     input:
-    file(st_file) from momps_st_{{ pid }}.collect()
-    file(profile_file) from momps_profile_{{ pid }}.collect()
+    val sample_id from momps_sample_id_{{ pid }}
+    file(st_file) from momps_st_{{ pid }}
+    file(profile_file) from momps_profile_{{ pid }}
 
     output:
     file "*.tsv"
@@ -84,8 +86,8 @@ process momps_report_{{ pid }} {
 
     script:
     """
-    cat $st_file >> momps_st.tsv
-    cat $profile_file >> momps_profile.tsv
+    cat $st_file > ${sample_id}_momps_st.tsv
+    cat $profile_file > ${sample_id}_momps_profile.tsv
     """
 
 }
