@@ -32,6 +32,7 @@ with a secondary channel into `mafft`
 - New version of DEN-IM recipe
 - Now prints an ordered list of components
 - Moved taxonomy results from `results/annotation/` to `results/taxonomy/`
+- Moved mlst results from `results/annotation/` to `results/typing/`
 
 
 ## 1.4.0
