@@ -378,7 +378,7 @@ class SplitAssembly(Process):
 
 
         self.params = {
-            "size": {
+            "splitSize": {
                 "default": "null",
                 "description": "Minimum contig size"
             }

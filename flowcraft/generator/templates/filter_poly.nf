@@ -1,4 +1,4 @@
-IN_adapter_{{ pid }} = Channel.value(params.adapter{{ param_id }})
+IN_adapter_{{ pid }} = Channel.value(params.pattern{{ param_id }})
 
 clear = params.clearInput{{ param_id }} ? "true" : "false"
 checkpointClear_{{ pid }} = Channel.value(clear)

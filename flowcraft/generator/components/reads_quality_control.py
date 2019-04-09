@@ -346,7 +346,7 @@ class FilterPoly(Process):
         self.output_type = "fastq"
 
         self.params = {
-            "adapter": {
+            "pattern": {
                 "default": "'A 50%; T 50%; N 50%'",
                 "description":
                     "Pattern to filter the reads. Please separate parameter"

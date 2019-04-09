@@ -1,9 +1,9 @@
 // Check for the presence of absence of the minimum contig size parameter
-if (params.size{{ param_id }} == null){
+if (params.splitSize{{ param_id }} == null){
     exit 1, "A minimum contig size must be provided."
 }
 
-IN_min_contig_size_{{ pid }} = Channel.value(params.size{{ param_id }})
+IN_min_contig_size_{{ pid }} = Channel.value(params.splitSize{{ param_id }})
 
 process split_assembly_{{ pid }} {
 

@@ -144,12 +144,12 @@ class DengueTyping(Process):
         self.link_start.extend(["_ref_seqTyping"])
 
         self.params = {
-            "reference": {
+            "typingReference": {
                 "default": "ref/DENV_TYPING_DB_V2.fasta",
                 "description":
                     "Typing database."
             },
-            "get_genome": {
+            "getGenome": {
                 "default": "true",
                 "description":
                     "Retrieves the sequence of the closest reference."
