@@ -230,6 +230,7 @@ def main(sample_id, assembly, reference, result):
         # write appropriate QC dot files based on blast statistics
         identity = 0
         coverage = 0
+        reference_name = ''
 
         if typing_result != "NT":
             # write appropriate QC dot files based on blast statistics
@@ -251,10 +252,10 @@ def main(sample_id, assembly, reference, result):
                      'value': typing_result,
                      'table': 'typing'},
                     {'header': 'Identity',
-                     'value': round(identity,2),
+                     'value': round(identity, 2),
                      'table': 'typing'},
                     {'header': 'Coverage',
-                     'value': round(coverage,2),
+                     'value': round(coverage, 2),
                      'table': 'typing'},
                     {'header': 'Reference',
                      'value': reference_name.replace("gb_", "gb:").split("_")[0],
@@ -276,10 +277,10 @@ def main(sample_id, assembly, reference, result):
                      'value': typing_result,
                      'table': 'typing'},
                     {'header': 'Identity',
-                     'value': round(identity),
+                     'value': round(identity, 2),
                      'table': 'typing'},
                     {'header': 'Coverage',
-                     'value': round(coverage),
+                     'value': round(coverage, 2),
                      'table': 'typing'},
                     {'header': 'Reference',
                      'value': reference_name.replace("gb_", "gb:").split("_")[1],

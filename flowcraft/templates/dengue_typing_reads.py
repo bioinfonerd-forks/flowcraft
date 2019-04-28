@@ -173,12 +173,12 @@ def getConsesusSequence(best_reference, consensus, sample_id):
     for header in entry:
 
         headerStr = header.__next__()[1:].strip()
+        filename = sample_id + '_' + replace_char(best_reference.split("_")[0]) + '_consensus.fasta'
         seq = "".join(s.strip() for s in entry.__next__())
 
         if gb_ID in headerStr:
-            with open(sample_id + '_consensus.fasta', "w") as output_file:
-                output_file.write(">" + sample_id + "_consensus_" +
-                                  replace_char(best_reference.split("_")[0]) + "\\n" + seq.upper() + "\\n")
+            with open(filename, "w") as output_file:
+                output_file.write(">" + sample_id + "\\n" + seq.upper() + "\\n")
 
     fh_consensus.close()
 
@@ -276,9 +276,9 @@ def main(sample_id, assembly, fastq_pair, reference, result):
 
         if typing_result != "NT":
             logger.info("Getting consensus sequenceq")
-            getConsesusSequence(best_reference,
-                                glob.glob("rematch/*/sample.noMatter.fasta")[0],
-                                sample_id)
+
+            # write consensus sequence to file
+            getConsesusSequence(best_reference, glob.glob("rematch/*/sample.noMatter.fasta")[0], sample_id)
 
             # check confidence and emmit appropriate warnings
             identity, coverage = getScore("seq_typing.report_types.tab")
@@ -318,7 +318,6 @@ def main(sample_id, assembly, fastq_pair, reference, result):
                      'column': 'typing'}]}
 
         else:
-
             json_report = {'tableRow': [{
                 'sample': sample_id,
                 'data': [
@@ -332,7 +331,7 @@ def main(sample_id, assembly, fastq_pair, reference, result):
                      'value': round(coverage, 2),
                      'table': 'typing'},
                     {'header': 'Reference',
-                     'value': reference_name.replace("gb_", "gb:").split("_")[1],
+                     'value': reference_name.replace("gb_", "gb:").split("_")[0],
                      'table': 'typing'}
                 ]}],
                 'metadata': [
